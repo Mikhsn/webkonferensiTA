@@ -16,6 +16,8 @@ class Transaction extends Model
         'transaction_status',
         'expired_at',
         'status',
+        'article_title',
+        'presenter_name',
     ];
     public function user() {
         return $this->belongsTo(User::class);

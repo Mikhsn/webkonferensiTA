@@ -1,14 +1,14 @@
 @extends('master.member')
 @section('page')
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Welcome, {{ Auth::user()->name }}</h2>
+        <h2 class="text-center mb-4">Welcome, {{ Auth::user()->name }} You Are Member Now</h2>
         @if (auth()->user()->role_id === 3)
         <div class="container mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-sm">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="height: 200px;">
-                            <h5 class="card-title text-center">Member Information</h5>
+                            <h5 class="card-title text-center">Please Download</h5>
                             <p class="card-text text-center">
                                 <strong>Your Member ID:</strong> {{ auth()->user()->member_id }}
                             </p>

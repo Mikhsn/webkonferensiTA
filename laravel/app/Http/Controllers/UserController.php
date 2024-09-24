@@ -48,6 +48,12 @@ class UserController extends Controller
         return view('user.home', compact('conferences'));
     }
 
+    public function waitingApproval()
+{
+    return view('payment.waiting');
+}
+
+
 
 
 

@@ -6,30 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
     <link rel="icon" href="/images/logo.png" type="icon">
-    <link rel="stylesheet" href="{{ asset ('assets/css/main/app.css') }}">
-    <link rel="stylesheet" href="{{ asset ('assets/css/main/app-dark.css') }}">
-    <link rel="stylesheet" href="{{ asset ('assets/css/shared/iconly.css') }}">
-<title>
-    .table-hover tbody tr:hover {
+    <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <title>
+        .table-hover tbody tr:hover {
         background-color: #f1f1f1;
         transition: background-color 0.3s ease;
-    }
+        }
 
-    .badge {
+        .badge {
         padding: 5px 10px;
         font-size: 0.9rem;
-    }
+        }
 
-    .btn-group .btn {
+        .btn-group .btn {
         margin-right: 5px;
         transition: all 0.3s ease;
-    }
+        }
 
-    .btn-group .btn:hover {
+        .btn-group .btn:hover {
         transform: translateY(-2px);
-    }
+        }
 
-</title>
+    </title>
 </head>
 
 <body>
@@ -87,6 +89,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item {{ Request::is('users*') ? 'active' : '' }}">
+                            <a href="/admin/users" class='sidebar-link'>
+                                <i class="bi bi-people-fill"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item {{ Request::is('conferences*') ? 'active' : '' }}">
                             <a href="/conferences" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -94,10 +103,9 @@
                             </a>
                         </li>
 
-
                         <li class="sidebar-item {{ Request::is('transactions*') ? 'active' : '' }}">
                             <a href="/transactions" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-archive-fill"></i>
                                 <span>Transactions</span>
                             </a>
                         </li>
@@ -121,11 +129,8 @@
                                 <li class="submenu-item {{ Request::is('reports/member') ? 'active' : '' }}">
                                     <a href="/reports/member">Member</a>
                                 </li>
-                                <li class="submenu-item {{ Request::is('reports/certificate') ? 'active' : '' }}">
-                                    <a href="/reports/certificate">Certificate</a>
-                                </li>
-                                <li class="submenu-item {{ Request::is('reports/card-member') ? 'active' : '' }}">
-                                    <a href="/reports/card-member">Card Member</a>
+                                <li class="submenu-item {{ Request::is('admin/downloads') ? 'active' : '' }}">
+                                    <a href="/admin/downloads">Download Info</a>
                                 </li>
                             </ul>
                         </li>
@@ -161,13 +166,12 @@
             </footer>
         </div>
     </div>
-    <script src="{{ asset ('assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset ('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <!-- Need: Apexcharts -->
-    <script src="{{ asset ('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset ('assets/js/pages/dashboard.js') }}"></script>
-
+    <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
 </body>
 
 </html>

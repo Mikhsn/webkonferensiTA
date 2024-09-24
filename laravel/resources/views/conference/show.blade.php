@@ -25,7 +25,7 @@
                     <div class="mt-4">
                         <form action="{{ route('conference.buy', $conference->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-success">Buy Conference</button>
+                            <button type="submit" class="btn btn-success">Register</button>
                         </form>
                     </div>
                 </div>

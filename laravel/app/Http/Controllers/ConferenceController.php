@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Conference;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -119,5 +120,9 @@ class ConferenceController extends Controller
     public function buyforuser(){
         return view('user.buyconference');
     }
+
+
+
+
 }
 

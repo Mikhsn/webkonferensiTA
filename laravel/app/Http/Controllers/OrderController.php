@@ -18,6 +18,15 @@ class OrderController extends Controller
         $conference = Conference::findOrFail($conference_id);
         $user = auth()->user();
 
+        if ($user->role_id === 3 && $conference->discount) {
+            // Jika user adalah member dan ada diskon, hitung harga setelah diskon
+            $discountedPrice = $conference->price - ($conference->price * $conference->discount / 100);
+        } else {
+            // Jika bukan member atau tidak ada diskon, gunakan harga normal
+            $discountedPrice = $conference->price;
+        }
+
+
         // Generate order_id yang unik
         $orderId = 'CONF-' . time() . '-' . Str::random(8);
 
@@ -40,7 +49,7 @@ class OrderController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => $orderId,
-                'gross_amount' => $conference->price,
+                'gross_amount' => $discountedPrice,
             ),
             'customer_details' => array(
                 'first_name' => $user->name,

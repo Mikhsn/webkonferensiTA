@@ -17,6 +17,12 @@ class MyConferenceController extends Controller
     }
 
     public function myconferencemember(){
-        return view('myconferences');
+        $user = auth()->user();
+        $transactions = Transaction::where('user_id', $user->id)
+                                  ->where('status', 'approved')
+                                  ->with('conference')
+                                  ->get();
+        return view('myconferences', compact('transactions'));
+
     }
 }

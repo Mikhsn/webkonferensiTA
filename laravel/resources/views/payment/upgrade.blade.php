@@ -63,31 +63,25 @@
 <body>
     <div class="upgrade-card">
         <h2>Upgrade ke Member</h2>
-
-        <!-- Harga upgrade dari database -->
         <p>Harga Upgrade:</p>
         <p class="price">Rp{{ number_format($membershipPrice->price, 0, ',', '.') }}</p>
-
-        <!-- Tombol bayar -->
         <button id="pay-button">Bayar Sekarang</button>
     </div>
 
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
-            var snapToken = "{{ $snapToken }}"; // Ambil token dari Blade template
-
-            // Trigger snap popup
+            var snapToken = "{{ $snapToken }}";
             window.snap.pay(snapToken, {
                 onSuccess: function(result) {
                     alert("Payment success!");
                     console.log(result);
-                    window.location.href = '/member'; // Sesuaikan dengan URL yang Anda inginkan setelah pembayaran berhasil
+                    window.location.href = '/upgrade/waiting';
                 },
                 onPending: function(result) {
                     alert("Waiting for your payment!");
                     console.log(result);
-                    window.location.href = '/user'; // Sesuaikan dengan URL yang Anda inginkan untuk status pending
+                    window.location.href = '/user';
                 },
                 onError: function(result) {
                     alert("Payment failed!");

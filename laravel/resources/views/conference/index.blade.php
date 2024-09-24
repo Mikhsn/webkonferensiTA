@@ -1,5 +1,15 @@
 @extends('master.kerangka')
 @section('content')
+<style>
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
     <div class="container mb-4">
         <h2 class="text-center mb-4">List Of Conferences</h2>
         <div class="row">
@@ -23,6 +33,7 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
+                                    <th scope="col">NO</th>
                                     <th scope="col">GAMBAR</th>
                                     <th scope="col">JUDUL</th>
                                     <th scope="col">DESKRIPSI</th>
@@ -34,8 +45,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($conferences as $conference)
+                                @forelse ($conferences as $index => $conference)
                                     <tr>
+                                        <td>{{ $loop->iteration + ($conferences->currentPage() - 1) * $conferences->perPage() }}</td>
                                         <td class="text-center">
                                             <img src="{{ Storage::url('public/conference/') . $conference->image }}"
                                                 class="img-fluid rounded" style="width: 120px">

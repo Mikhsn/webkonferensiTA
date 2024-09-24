@@ -171,13 +171,6 @@
                                     <span>My Conference</span>
                                 </a>
                             </li>
-
-                            <li class="menu-item  ">
-                                <a href="/certificates" class='menu-link'>
-                                    <i class="bi bi-grid-1x2-fill"></i>
-                                    <span>Certificates</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </nav>

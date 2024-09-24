@@ -8,15 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class BrowseConferenceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $conferences = Conference::all(); // Ambil semua data conference
+        $search = $request->input('search');
+        $conferences = Conference::when($search, function ($query, $search) {
+            return $query->where('title', 'like', "%{$search}%")
+                         ->orWhere('description', 'like', "%{$search}%");
+        })->get(); // Ambil semua data conference
         return view('user.index', compact('conferences'));
     }
 
-    public function browse()
+    public function browse(Request $request)
     {
-        $conferences = Conference::all();
+        $search = $request->input('search');
+        $conferences = Conference::when($search, function ($query, $search) {
+            return $query->where('title', 'like', "%{$search}%")
+                         ->orWhere('description', 'like', "%{$search}%");
+        })->get();
         $isMember = Auth::user()->role_id === 3; // Ambil semua data conference
         return view('member.index', compact('conferences', 'isMember'));
     }

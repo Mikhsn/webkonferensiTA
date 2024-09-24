@@ -1,6 +1,5 @@
 @extends('master.user')
 @section('main')
-
 <div class="container mt-5">
     @if($transactions->isEmpty())
         <div class="alert alert-warning text-center" role="alert">
@@ -30,10 +29,10 @@
                 </div>
             </div>
 
-
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
-                        let endTime = new Date("{{ $transaction->end_time }}").getTime();
+                        // Mengambil date dari conference
+                        let endTime = new Date("{{ $transaction->conference->date }}").getTime();
                         let countdownElement = document.getElementById("countdown-{{ $transaction->id }}");
                         let certificateElement = document.getElementById("certificate-{{ $transaction->id }}");
 
@@ -41,11 +40,12 @@
                             let now = new Date().getTime();
                             let distance = endTime - now;
 
+                            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
                             let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                            countdownElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+                            countdownElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
                             if (distance < 0) {
                                 clearInterval(x);
@@ -59,5 +59,4 @@
         @endforeach
     @endif
 </div>
-
 @endsection

@@ -91,6 +91,14 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 
     Route::post('/conferences/{conferences}/update', [ConferenceController::class, 'update'])->name('conferences.update');
     Route::delete('/conferences/{conferences}', [ConferenceController::class, 'destroy'])->name('conferences.destroy');
+
+    Route::get('/admin/downloads', [AdminController::class, 'viewDownloads'])->name('admin.downloads');
+
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('users.edit');
+    Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('users.update');
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
+
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
@@ -103,6 +111,10 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/user/profile', [UserController::class, 'profile']);
 
     Route::get('/conference/buyer', [ConferenceController::class, 'buyforuser'])->name('conference.buyer');
+
+    Route::get('/upgrade/waiting', [UserController::class, 'waitingApproval'])->name('upgrade.waiting');
+
+
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:3']], function () {

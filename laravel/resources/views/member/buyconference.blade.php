@@ -83,8 +83,8 @@
 
         <!-- Harga berdasarkan jenis user -->
         @if (auth()->user()->role_id === 3)
-            <p>Original Price: <span class="price">${{ $conference->price }}</span></p>
-            <p>Member Price: <span class="member-price">Rp{{ $conference->price * 0.8 }}</span> (20% discount)</p>
+            <p>Original Price: <span class="price">Rp{{ $conference->price }}</span></p>
+            <p>Member Price: <span class="member-price">Rp{{ $conference ->price - ($conference->price * $conference->discount / 100) }}</span></p>
         @else
             <p>Price: <span class="price">Rp{{ $conference->price }}</span></p>
         @endif
@@ -92,6 +92,9 @@
         <!-- Tombol bayar -->
         <button id="pay-button">Pay Now</button>
     </div>
+    <script>
+        var userRole = "{{ Auth::user()->role_id }}";
+    </script>
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function() {
@@ -103,9 +106,12 @@
                     if (result) {
                         alert("Payment success!");
                         console.log(result);
-                        window.location.href = '/myconference';
+                        if (userRole == 2) { // 2 adalah role untuk user biasa
+                            window.location.href = '/myconference';
+                        } else if (userRole == 3) { // 3 adalah role untuk member
+                            window.location.href = '/myconferences';
+                        }
                     }
-
                 },
                 onPending: function(result) {
                     alert("waiting for your payment!");
@@ -122,7 +128,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>

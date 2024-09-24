@@ -1,5 +1,15 @@
 @extends('master.kerangka')
 @section('content')
+<style>
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
 <h3 class="mb-0 text-center">Transaction List</h3>
 <div class="container mt-5">
     <div class="card shadow-sm">
@@ -10,7 +20,7 @@
             <table class="table table-hover table-striped table-bordered table-responsive-md">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th>
                         <th scope="col">User</th>
                         <th scope="col">Conference</th>
                         <th scope="col">Status</th>
@@ -20,9 +30,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($transactions as $transaction)
+                    @foreach ($transactions as $index => $transaction)
                         <tr>
-                            <td>{{ $transaction->id }}</td>
+                            <td>{{ $loop->iteration + ($transactions->currentPage() - 1) * $transactions->perPage() }}</td>
                             <td>{{ $transaction->user->name }}</td>
                             <td>{{ $transaction->conference->title }}</td>
                             <td>

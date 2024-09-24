@@ -1,85 +1,77 @@
 @extends('master.member')
 @section('page')
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Browse Conferences</h2>
-
-    <!-- Conference Filters (Optional) -->
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <select class="form-select" aria-label="Filter by Category">
-                <option selected>Filter by Category</option>
-                <option value="1">AI & Machine Learning</option>
-                <option value="2">Blockchain</option>
-                <option value="3">Cybersecurity</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <select class="form-select" aria-label="Filter by Date">
-                <option selected>Filter by Date</option>
-                <option value="1">Upcoming</option>
-                <option value="2">Past</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="Search conferences..." aria-label="Search">
-        </div>
-    </div>
-
-    <!-- Conference Cards -->
     <div class="container mt-5">
-        <div class="row">
-            @foreach ($conferences as $conference)
-                <div class="col-12 mb-4">
-                    <div class="card horizontal-card shadow-sm">
-                        <div class="row no-gutters">
-                            <!-- Gambar conference -->
-                            <div class="col-md-4">
-                                <img src="{{ asset('storage/conference/' . $conference->image) }}" class="card-img" alt="{{ $conference->title }}" style="height: 100%; object-fit: cover;">
-                            </div>
+        <h2 class="text-center mb-4">Browse Conferences</h2>
+        @if ($conferences->isEmpty())
+            <div class="alert alert-warning text-center">Tidak ada data conference.</div>
+        @else
+            <!-- Conference Filters (Optional) -->
+            <div class="mb-3">
+                <form action="{{ url()->current() }}" method="GET" class="d-flex">
+                    <input type="text" name="search" class="form-control me-2" placeholder="Search Conference..."
+                        value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </form>
+            </div>
 
-                            <!-- Informasi conference -->
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <!-- Judul conference -->
-                                    <h5 class="card-title">{{ $conference->title }}</h5>
+            <!-- Conference Cards -->
+            <div class="container mt-5">
+                <div class="row">
+                    @foreach ($conferences as $conference)
+                        <div class="col-12 mb-4">
+                            <div class="card horizontal-card shadow-sm">
+                                <div class="row no-gutters">
+                                    <!-- Gambar conference -->
+                                    <div class="col-md-4">
+                                        <img src="{{ asset('storage/conference/' . $conference->image) }}" class="card-img"
+                                            alt="{{ $conference->title }}" style="height: 100%; object-fit: cover;">
+                                    </div>
 
-                                    <!-- Deskripsi conference -->
-                                    <p class="card-text">{{ $conference->description }}</p>
+                                    <!-- Informasi conference -->
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <!-- Judul conference -->
+                                            <h5 class="card-title">{{ $conference->title }}</h5>
 
-                                    <!-- Tanggal dan Lokasi conference -->
-                                    <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date) }}</p>
-                                    <p><strong>Location:</strong> {{ $conference->location }}</p>
+                                            <!-- Deskripsi conference -->
+                                            <p class="card-text">{{ $conference->description }}</p>
 
-                                    <!-- Harga conference dengan diskon untuk member -->
-                                    @if ($isMember && $conference->discount)
-                                        <p>
-                                            <strong>Original Price:</strong> <del>${{ $conference->price }}</del>
-                                            <br>
-                                            <strong>Discounted Price:</strong> ${{ $conference->price - ($conference->price * $conference->discount / 100) }}
-                                            <br>
-                                            <span class="badge bg-success">{{ $conference->discount }}% off</span>
-                                        </p>
-                                    @else
-                                        <p><strong>Price:</strong> ${{ $conference->price }}</p>
-                                    @endif
+                                            <!-- Tanggal dan Lokasi conference -->
+                                            <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date) }}</p>
+                                            <p><strong>Location:</strong> {{ $conference->location }}</p>
 
-                                    <!-- Tombol untuk melihat detail dan membeli conference -->
-                                    <div class="d-flex justify-content-start mt-3">
-                                        <a href="{{ route('conferences.showForMember', $conference->id) }}" class="btn btn-outline-primary me-3">View More</a>
-                                        <form action="{{ route('conference.buy', $conference->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success">Buy Conference</button>
-                                        </form>
+                                            <!-- Harga conference dengan diskon untuk member -->
+                                            @if ($isMember && $conference->discount)
+                                                <p>
+                                                    <strong>Original Price:</strong> <del>Rp{{ $conference->price }}</del>
+                                                    <br>
+                                                    <strong>Discounted Price:</strong>
+                                                    Rp{{ $conference->price - ($conference->price * $conference->discount) / 100 }}
+                                                    <br>
+                                                    <span class="badge bg-success">{{ $conference->discount }}% off</span>
+                                                </p>
+                                            @else
+                                                <p><strong>Price:</strong> Rp{{ $conference->price }}</p>
+                                            @endif
+
+                                            <!-- Tombol untuk melihat detail dan membeli conference -->
+                                            <div class="d-flex justify-content-start mt-3">
+                                                <a href="{{ route('conferences.showForMember', $conference->id) }}"
+                                                    class="btn btn-outline-primary me-3">View More</a>
+                                                <form action="{{ route('conference.buy', $conference->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">Register</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endif
     </div>
-
-</div>
-
 @endsection
