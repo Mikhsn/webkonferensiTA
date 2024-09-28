@@ -109,6 +109,21 @@
             padding: 20px;
         }
     </style>
+    <style>
+        .sponsor-wrapper {
+            padding: 10px;
+            /* Memberikan jarak antara gambar */
+        }
+
+        .sponsor-img {
+            max-width: 100%;
+            /* Agar gambar menyesuaikan ukuran kontainer */
+            height: 100px;
+            /* Ukuran tinggi gambar yang sama */
+            object-fit: contain;
+            /* Menjaga aspek rasio gambar */
+        }
+    </style>
 
     <div>
         <div class="hero-wrap" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -138,29 +153,36 @@
 
     <div class="container my-5">
         <h2 class="text-center mb-4"><b>Our Sponsors</b></h2>
-        <div class="row text-center">
-            <div class="col-md-3 col-sm-6 sponsor-wrapper">
-                <a href="#">
-                    <img src="/images/sponsor1.jpg" class="img-fluid sponsor-img" alt="Sponsor 1">
+        <div class="row text-center justify-content-center">
+            <div class="col-md-2 col-sm-4 sponsor-wrapper">
+                <a href="https://www.upnm.edu.my/">
+                    <img src="/images/upnm.png" class="img-fluid sponsor-img" alt="Sponsor 3">
                 </a>
             </div>
-            <div class="col-md-3 col-sm-6 sponsor-wrapper">
-                <a href="#">
+            <div class="col-md-2 col-sm-4 sponsor-wrapper">
+                <a href="https://www.pnp.ac.id/">
                     <img src="/images/sponsor2.png" class="img-fluid sponsor-img" alt="Sponsor 2">
                 </a>
             </div>
-            <div class="col-md-3 col-sm-6 sponsor-wrapper">
-                <a href="#">
-                    <img src="images/sponsor3.jpeg" class="img-fluid sponsor-img" alt="Sponsor 3">
+            <div class="col-md-2 col-sm-4 sponsor-wrapper">
+                <a href="https://www.mmu.edu.my/">
+                    <img src="/images/sponsor1.jpg" class="img-fluid sponsor-img" alt="Sponsor 1">
                 </a>
             </div>
-            <div class="col-md-3 col-sm-6 sponsor-wrapper">
-                <a href="#">
-                    <img src="images/sponsor1.jpg" class="img-fluid sponsor-img" alt="Sponsor 4">
+            <div class="col-md-2 col-sm-4 sponsor-wrapper">
+                <a href="https://web.polines.ac.id/id/">
+                    <img src="/images/sponsor3.jpeg" class="img-fluid sponsor-img" alt="Sponsor 4">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-4 sponsor-wrapper">
+                <a href="https://www.uthm.edu.my/en/">
+                    <img src="/images/UTHM.webp" class="img-fluid sponsor-img" alt="Sponsor 5">
                 </a>
             </div>
         </div>
     </div>
+
+
 
     <section class="ftco-counter img" id="section-counter">
         <div class="container">
@@ -252,20 +274,22 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($conferences as $conference)
-                <div class="col-md-3 ftco-animate">
-                    <a href="{{ asset ('storage/conference/'. $conference->image ) }}" class="gallery image-popup img d-flex align-items-center"
-                    style="background-image: url('{{ asset('storage/conference/' . $conference->image) }}')">
-                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
-                            <span class="icon-globe"></span>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($conferences as $conference)
+                    <div class="col-md-3 ftco-animate">
+                        <a href="{{ asset('storage/conference/' . $conference->image) }}"
+                            class="gallery image-popup img d-flex align-items-center"
+                            style="background-image: url('{{ asset('storage/conference/' . $conference->image) }}')">
+                            <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                                <span class="icon-globe"></span>
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <div class="row mt-5">
                 <div class="col text-center">
-                    {{ $news->links('vendor.pagination.bootstrap-4') }} <!-- Ganti 'default' dengan nama file view pagination yang diinginkan -->
+                    {{ $news->links('vendor.pagination.bootstrap-4') }}
+                    <!-- Ganti 'default' dengan nama file view pagination yang diinginkan -->
                 </div>
             </div>
         </div>
@@ -398,7 +422,8 @@
             </div>
             <div class="row mt-5">
                 <div class="col text-center">
-                    {{ $news->links('vendor.pagination.bootstrap-5') }} <!-- Ganti 'default' dengan nama file view pagination yang diinginkan -->
+                    {{ $news->links('vendor.pagination.bootstrap-5') }}
+                    <!-- Ganti 'default' dengan nama file view pagination yang diinginkan -->
                 </div>
             </div>
         </div>

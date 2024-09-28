@@ -20,19 +20,19 @@
             <table class="table table-hover table-striped table-bordered table-responsive-md">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">User</th>
-                        <th scope="col">Conference</th>
-                        <th scope="col">Status</th>
+                        <th scope="col" class="text-center">No</th>
+                        <th scope="col" class="text-center">User</th>
+                        <th scope="col" class="text-center">Conference</th>
+                        <th scope="col" class="text-center">Status</th>
                         @if($transactions->contains('status', 'pending'))
-                            <th scope="col">Action</th>
+                            <th scope="col" class="text-center">Action</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transactions as $index => $transaction)
                         <tr>
-                            <td>{{ $loop->iteration + ($transactions->currentPage() - 1) * $transactions->perPage() }}</td>
+                            <td class="text-center">{{ $loop->iteration + ($transactions->currentPage() - 1) * $transactions->perPage() }}</td>
                             <td>{{ $transaction->user->name }}</td>
                             <td>{{ $transaction->conference->title }}</td>
                             <td>

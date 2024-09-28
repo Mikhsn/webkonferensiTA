@@ -33,21 +33,21 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
-                                    <th scope="col">GAMBAR</th>
-                                    <th scope="col">JUDUL</th>
-                                    <th scope="col">DESKRIPSI</th>
-                                    <th scope="col">TANGGAL</th>
-                                    <th scope="col">LOKASI</th>
-                                    <th scope="col">HARGA</th>
-                                    <th scope="col">DISKON MEMBER</th>
+                                    <th scope="col" class="text-center">NO</th>
+                                    <th scope="col" class="text-center">GAMBAR</th>
+                                    <th scope="col" class="text-center">JUDUL</th>
+                                    <th scope="col" class="text-center">DESKRIPSI</th>
+                                    <th scope="col" class="text-center">TANGGAL</th>
+                                    <th scope="col" class="text-center">LOKASI</th>
+                                    <th scope="col" class="text-center">HARGA</th>
+                                    <th scope="col" class="text-center">DISKON MEMBER</th>
                                     <th scope="col" class="text-center">AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($conferences as $index => $conference)
                                     <tr>
-                                        <td>{{ $loop->iteration + ($conferences->currentPage() - 1) * $conferences->perPage() }}</td>
+                                        <td class="text-center">{{ $loop->iteration + ($conferences->currentPage() - 1) * $conferences->perPage() }}</td>
                                         <td class="text-center">
                                             <img src="{{ Storage::url('public/conference/') . $conference->image }}"
                                                 class="img-fluid rounded" style="width: 120px">
@@ -56,8 +56,8 @@
                                         <td>{!! Str::limit($conference->description, 100) !!}</td>
                                         <td>{{ $conference->date }}</td>
                                         <td>{{ $conference->location }}</td>
-                                        <td>${{ number_format($conference->price, 0, ',', '.') }}</td>
-                                        <td>{{ number_format($conference->discount, 0, ',', '.') }}%</td>
+                                        <td class="text-center">${{ number_format($conference->price, 0, ',', '.') }}</td>
+                                        <td class="text-center">{{ number_format($conference->discount, 0, ',', '.') }}%</td>
                                         <td class="text-center">
                                             <a href="{{ route('conferences.edit', $conference->id) }}"
                                                 class="btn btn-sm btn-warning">UPDATE</a>

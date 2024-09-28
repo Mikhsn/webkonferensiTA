@@ -11,9 +11,17 @@
     <link rel="stylesheet"
         href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <style>
+          .login-container {
+                transition: all 0.3s ease;
+            }
 
+            .login-container:hover {
+                transform: translateY(-5px);
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            }
+    </style>
 </head>
-
 <body>
 
     <a class="navbar-brand" href="/home"> <img src="/images/logo-sotvi.png" alt="Sotvi Logo"

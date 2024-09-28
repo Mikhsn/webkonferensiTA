@@ -12,8 +12,17 @@
         href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styless.css') }}">
 
-</head>
+    <style>
+        .register-container {
+              transition: all 0.3s ease;
+          }
 
+          .register-container:hover {
+              transform: translateY(-5px);
+              box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+          }
+    </style>
+</head>
 <body>
     <a class="navbar-brand" href="/home"> <img src="/images/logo-sotvi.png" alt="Sotvi Logo"
             style="height: 40px;"></a>
@@ -53,36 +62,28 @@
             </div>
             <!-- Baris Ketiga: Tipe Pengguna & organisasi -->
             <div class="form-row">
-                {{-- <div class="form-group col-md-6">
-                    <select class="form-control" name="role_id" required>
-                        <option value="" disabled selected>Select Role</option>
-                        <option value="2">User</option>
-                        <option value="3">Member (Get Discount)</option>
-                    </select>
-                    <i class="fas fa-user-tag input-icon"></i>
-                </div> --}}
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="Organization" name="organization" required>
                     <i class="fas fa-school input-icon"></i>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Address" name="address" required>
+                    <i class="fas fa-home input-icon"></i>
                 </div>
             </div>
             <!-- Baris Keempat: Alamat & Telepon -->
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="Address" name="address" required>
-                    <i class="fas fa-home input-icon"></i>
-                </div>
-                <div class="form-group col-md-6">
                     <input type="tel" class="form-control" placeholder="Phone Number" name="phone" required>
                     <i class="fas fa-phone input-icon"></i>
                 </div>
-            </div>
-            <!-- Baris Kelima: Kota & Negara -->
-            <div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="City" name="city" required>
                     <i class="fas fa-city input-icon"></i>
                 </div>
+            </div>
+            <!-- Baris Kelima: Kota & Negara -->
+            <div class="form-row justify-content-center">
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="country" name="country" required>
                     <i class="fas fa-globe input-icon"></i>

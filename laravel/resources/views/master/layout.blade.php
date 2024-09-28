@@ -7,35 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="/images/logo.png" type="icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     @include('include.style')
 </head>
 <style>
- .carousel-item {
-    display: flex;
-    justify-content: space-between;
-}
+    .carousel-item {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.card {
-    width: 100%;
-    margin: 0 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
+    .card {
+        width: 100%;
+        margin: 0 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
 
-.card:hover {
-    transform: scale(1.05);
-}
+    .card:hover {
+        transform: scale(1.05);
+    }
 
-.card img {
-    height: 200px;
-    object-fit: cover;
-}
+    .card img {
+        height: 200px;
+        object-fit: cover;
+    }
 
-.carousel-control-prev, .carousel-control-next {
-    width: 5%;
-}
-
-
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+    }
 </style>
 
 <body>
@@ -75,7 +79,7 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4"
                 stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     @include('include.script')
 </body>
 

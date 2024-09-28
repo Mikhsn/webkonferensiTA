@@ -31,24 +31,24 @@
                     <table class="table table-hover table-striped table-bordered table-responsive-md">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Payment Type</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">No</th>
+                                <th scope="col" class="text-center">User</th>
+                                <th scope="col" class="text-center">Payment Type</th>
+                                <th scope="col" class="text-center">Amount</th>
+                                <th scope="col" class="text-center">Status</th>
                                 @if ($payments->contains('transaction_status', 'pending'))
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-center">Action</th>
                                 @endif
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($payments as $index => $payment)
                                 <tr>
-                                    <td>{{ $loop->iteration + ($payments->currentPage() - 1) * $payments->perPage() }}</td>
+                                    <td class="text-center">{{ $loop->iteration + ($payments->currentPage() - 1) * $payments->perPage() }}</td>
                                     <td>{{ $payment->user->name }}</td>
-                                    <td>{{ $payment->payment_type }}</td>
-                                    <td>{{ number_format($payment->amount, 2) }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $payment->payment_type }}</td>
+                                    <td class="text-center">{{ number_format($payment->amount, 2) }}</td>
+                                    <td class="text-center">
                                         <span
                                             class="badge
                                     @if ($payment->transaction_status == 'pending') badge-warning bg-warning
