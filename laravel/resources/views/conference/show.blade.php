@@ -13,13 +13,13 @@
 
                     @if ($conference->discount)
                         <p>
-                            <strong>Original Price:</strong> <del>${{ $conference->price }}</del><br>
-                            <strong>Discounted Price:</strong> ${{ $conference->price - ($conference->price * $conference->discount / 100) }}
+                            <strong>Original Price:</strong> <del>Rp.{{ $conference->price }}</del><br>
+                            <strong>Discounted Price:</strong> Rp.{{ $conference->price - ($conference->price * $conference->discount / 100) }}
                             <br>
                             <span class="badge bg-success">{{ $conference->discount }}% off</span>
                         </p>
                     @else
-                        <p><strong>Price:</strong> ${{ $conference->price }}</p>
+                        <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
                     @endif
 
                     <div class="mt-4">
@@ -40,7 +40,7 @@
                     <p><strong>Title:</strong> {{ $conference->title }}</p>
                     <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date) }}</p>
                     <p><strong>Location:</strong> {{ $conference->location }}</p>
-                    <p><strong>Price:</strong> ${{ $conference->price }}</p>
+                    <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
                 </div>
             </div>
         </div>

@@ -43,15 +43,15 @@
                                             <!-- Harga conference dengan diskon untuk member -->
                                             @if ($isMember && $conference->discount)
                                                 <p>
-                                                    <strong>Original Price:</strong> <del>Rp{{ $conference->price }}</del>
+                                                    <strong>Original Price:</strong> <del>Rp.{{ $conference->price }}</del>
                                                     <br>
                                                     <strong>Discounted Price:</strong>
-                                                    Rp{{ $conference->price - ($conference->price * $conference->discount) / 100 }}
+                                                    Rp.{{ $conference->price - ($conference->price * $conference->discount) / 100 }}
                                                     <br>
                                                     <span class="badge bg-success">{{ $conference->discount }}% off</span>
                                                 </p>
                                             @else
-                                                <p><strong>Price:</strong> Rp{{ $conference->price }}</p>
+                                                <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
                                             @endif
 
                                             <!-- Tombol untuk melihat detail dan membeli conference -->

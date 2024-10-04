@@ -42,7 +42,7 @@
                                             <p><strong>Location:</strong> {{ $conference->location }}</p>
 
                                             <!-- Harga conference -->
-                                            <p><strong>Price:</strong> ${{ $conference->price }}</p>
+                                            <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
 
                                             <!-- Tombol untuk melihat detail dan membeli conference -->
                                             <div class="d-flex justify-content-start mt-3">
