@@ -64,7 +64,9 @@ class AdminController extends Controller
 
     public function transactions()
     {
-        $transactions = Transaction::with('user', 'conference')->paginate(5);
+        $transactions = Transaction::with('user', 'conference')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
         return view('admin.transactions', compact('transactions'));
     }
 
@@ -105,7 +107,8 @@ class AdminController extends Controller
                     $userQuery->where('name', 'like', "%{$search}%");
                 });
             })
-            ->paginate(5);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('admin.payments', compact('payments'));
     }
 
@@ -158,6 +161,7 @@ class AdminController extends Controller
     {
         $transactions = Transaction::with('user', 'conference')
             ->where('certificate_downloaded', true)
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('admin.downloads', compact('transactions'));
@@ -169,7 +173,8 @@ class AdminController extends Controller
         $users = User::when($search, function ($query, $search) {
             return $query->where('name', 'like', "%{$search}%")
                          ->orWhere('email', 'like', "%{$search}%");
-        })->paginate(10);
+        })  ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('users.index', compact('users'));
     }
@@ -197,12 +202,12 @@ class AdminController extends Controller
     }
 
     // Fungsi untuk menghapus user
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
+    // public function destroy($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->delete();
 
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
-    }
+    //     return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
+    // }
 }
 

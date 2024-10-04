@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class ReportsMemberController extends Controller
 {
     public function member(){
-        $members = User::where('role_id', 3)->paginate(5);
+        $members = User::where('role_id', 3)
+        ->orderBy('created_at', 'desc')
+        ->paginate(5);
         return view('reports.member', compact('members'));
     }
 }

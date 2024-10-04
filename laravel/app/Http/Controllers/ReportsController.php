@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class ReportsController extends Controller
 {
     public function index(){
-        $users = User::where('role_id', 2)->paginate(5);
+        $users = User::where('role_id', 2)
+        ->orderBy('created_at', 'desc')
+        ->paginate(5);
         return view('reports.index', compact('users'));
     }
 

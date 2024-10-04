@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -25,32 +26,28 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        try {
+            $credentials = $request->validate([
+                'email' => ['required', 'email:dns'],
+                'password' => ['required'],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, tampilkan pesan error untuk DNS
+            Session::flash('error', 'Email tidak valid atau domain tidak memiliki DNS. Silakan gunakan email yang valid.');
+            return redirect()->route('login')->withErrors($e->validator)->withInput();
+        }
 
         if (auth()->attempt($credentials)) {
 
             // buat ulang session login
             $request->session()->regenerate();
-
-            // if (auth()->user()->role_id === 1) {
-            //     // jika user admin
-            //     return redirect()->intended('/admin');
-            // } elseif (auth()->user()->role_id === 2) {
-            //     // jika user userbiasa
-            //     return redirect()->intended('/user');
-            // } else {
-            //     // jika user member
-            //     return redirect()->intended('/member');
-            // }
         }
-
+        Session::flash('error', 'Email atau password salah.');
         return back()->with('error', 'Login Gagal. Cek username dan password anda');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
 
         auth()->logout();
         $request->session()->invalidate();

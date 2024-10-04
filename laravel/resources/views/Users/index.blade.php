@@ -56,11 +56,11 @@
                             <td class="text-center">
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                {{-- <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?');">Hapus</button>
-                                </form>
+                                </form> --}}
                             </td>
 
                         </tr>

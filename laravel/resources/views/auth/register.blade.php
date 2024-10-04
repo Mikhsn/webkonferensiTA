@@ -14,15 +14,16 @@
 
     <style>
         .register-container {
-              transition: all 0.3s ease;
-          }
+            transition: all 0.3s ease;
+        }
 
-          .register-container:hover {
-              transform: translateY(-5px);
-              box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-          }
+        .register-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
+
 <body>
     <a class="navbar-brand" href="/home"> <img src="/images/logo-sotvi.png" alt="Sotvi Logo"
             style="height: 40px;"></a>
@@ -34,7 +35,11 @@
                 {{ session('message') }}
             </div>
         @endif
-
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form action="{{ route('create') }}" method="POST">
             @csrf
             <!-- Baris Pertama: Nama Lengkap & Email -->

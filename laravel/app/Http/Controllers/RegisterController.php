@@ -15,56 +15,63 @@ class RegisterController extends Controller
 
     public function create(Request $request)
     {
-        // $roleId = $request->role_id;
+        $existingUser = User::where('email', $request->email)->first();
 
-    // Jika role_id tidak diatur (null) dan kondisi tertentu terpenuhi, jadikan role admin
-    // if ($roleId === null && $this->userCanCreateAdmin()) {
-    //     $roleId = 1; // Set role_id to 1 for Admin
-    // }
-
-    $existingUser = User::where('email', $request->email)->first();
-
-    if ($existingUser) {
-        // Jika email sudah ada, tetap lanjutkan untuk membuat Member ID
-        if ($existingUser->role_id === 3) {
-            // Email sudah ada dan role adalah member
-            Session::flash('error', 'Email sudah terdaftar sebagai member. Silakan login.');
-            return redirect('/login');
-        } else {
-            Session::flash('error', 'Email sudah terdaftar dengan role lain. Gunakan email yang berbeda.');
-            return redirect()->back()->withInput();
-        }
-    }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'confirm_password' => bcrypt($request->confirm_password),
-            'role_id' => 2,
-            'organization' => $request->organization,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'city' => $request->city,
-            'country' => $request->country,
-
-            ]);
-
-            if ($user->role_id === 3) {
-                $user->member_id = $this->generateMemberId($user->id);
-                $user->save();
+        if ($existingUser) {
+            // Jika email sudah ada, tetap lanjutkan untuk membuat Member ID
+            if ($existingUser->role_id === 3) {
+                // Email sudah ada dan role adalah member
+                Session::flash('error', 'Email sudah terdaftar sebagai member. Silakan login.');
+                return redirect('/login');
+            } else {
+                Session::flash('error', 'Email sudah terdaftar dengan role lain. Gunakan email yang berbeda.');
+                return redirect()->back()->withInput();
             }
+        }
 
-            Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
+        try {
+            $validatedData = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email:dns', 'max:255', 'unique:users'], // Validasi email dengan DNS
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'confirm_password' => ['required', 'same:password'],
+                'organization' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:13'],
+                'city' => ['required', 'string', 'max:255'],
+                'country' => ['required', 'string', 'max:255'],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, tampilkan pesan error untuk DNS
+            Session::flash('error', 'Email tidak valid atau domain tidak memiliki DNS. Silakan gunakan email yang valid.');
+            return redirect()->route('register')->withErrors($e->validator)->withInput();
+        }
+
+        // Membuat user baru
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'role_id' => 2,
+            'organization' => $validatedData['organization'],
+            'address' => $validatedData['address'],
+            'phone' => $validatedData['phone'],
+            'city' => $validatedData['city'],
+            'country' => $validatedData['country'],
+        ]);
+
+        if ($user->role_id === 3) {
+            $user->member_id = $this->generateMemberId($user->id);
+            $user->save();
+        }
+
+        Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
         return redirect('/login');
         return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
-
     }
 
-    private function userCanCreateAdmin(){
+    private function userCanCreateAdmin()
+    {
         return auth()->check() && auth()->user()->role_id === 1;
     }
-
-
-
 }

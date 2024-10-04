@@ -12,16 +12,17 @@
         href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <style>
-          .login-container {
-                transition: all 0.3s ease;
-            }
+        .login-container {
+            transition: all 0.3s ease;
+        }
 
-            .login-container:hover {
-                transform: translateY(-5px);
-                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            }
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
+
 <body>
 
     <a class="navbar-brand" href="/home"> <img src="/images/logo-sotvi.png" alt="Sotvi Logo"
@@ -34,10 +35,9 @@
                 {{ session('message') }}
             </div>
         @endif
-        @if (session()->has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @if (session('error'))
+            <div class="alert alert-danger">
                 {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <form action="{{ route('login.login') }}" method="POST">
@@ -47,7 +47,7 @@
                     name="email" required>
                 @error('email')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        {{-- {{ $message }} --}}
                     </div>
                 @enderror
                 <i class="fas fa-envelope input-icon"></i>
