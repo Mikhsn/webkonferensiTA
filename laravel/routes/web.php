@@ -58,7 +58,6 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2,3']], function () {
     Route::get('/certificates', [CertificateController::class, 'certificatemember'])->name('certificate-member');
 
     Route::get('/certificate/download/{id}', [CertificateController::class, 'download'])->name('download.certificate');
-
 });
 
 Route::get('/home', [MasterController::class, 'index']);
@@ -98,7 +97,6 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('users.edit');
     Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('users.update');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
-
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
@@ -113,8 +111,6 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/conference/buyer', [ConferenceController::class, 'buyforuser'])->name('conference.buyer');
 
     Route::get('/upgrade/waiting', [UserController::class, 'waitingApproval'])->name('upgrade.waiting');
-
-
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:3']], function () {

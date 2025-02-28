@@ -12,7 +12,9 @@ class ConferenceController extends Controller
 {
     public function index()
     {
-        $conferences = Conference::latest()->paginate(2);
+        $conferences = Conference::latest()
+        ->orderBy('created_at', 'desc')
+        ->paginate(2);
         return view('conference.index', compact('conferences'));
     }
 

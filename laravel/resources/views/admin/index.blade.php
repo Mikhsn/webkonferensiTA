@@ -134,7 +134,7 @@
                             <div class="avatar avatar-xl">
                                 <img src="assets/images/faces/1.jpg" alt="Face 1">
                             </div>
-                            <div class="ms-3 name">
+                            <div class="ms-1 name">
                                 <h5 class="font-bold">{{ Auth::user()->name }}</h5>
                                 <h6 class="text-muted mb-0">Admin</h6>
                             </div>

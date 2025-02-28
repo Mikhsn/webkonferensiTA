@@ -34,7 +34,7 @@
                         <h5 class="card-title">Conference Details</h5>
                         <p><strong>Date:</strong> {{ $conference->date }}</p>
                         <p><strong>Location:</strong> {{ $conference->location }}</p>
-                        <p><strong>Price:</strong> ${{ $conference->price }}</p>
+                        <p><strong>Price:</strong> Rp{{ number_format($conference->price, 2, ',', '.') }}</p>
                         <p><strong>Discount:</strong> {{ $conference->discount }}% for member</p>
                         <a href="/register" class="btn btn-success w-100">Register</a>
                     </div>

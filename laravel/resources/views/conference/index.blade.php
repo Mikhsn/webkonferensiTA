@@ -56,7 +56,7 @@
                                         <td>{!! Str::limit($conference->description, 100) !!}</td>
                                         <td>{{ $conference->date }}</td>
                                         <td>{{ $conference->location }}</td>
-                                        <td class="text-center">${{ number_format($conference->price, 0, ',', '.') }}</td>
+                                        <td class="text-center">Rp{{ number_format($conference->price, 2, ',', '.') }}</td>
                                         <td class="text-center">{{ number_format($conference->discount, 0, ',', '.') }}%</td>
                                         <td class="text-center">
                                             <a href="{{ route('conferences.edit', $conference->id) }}"

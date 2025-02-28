@@ -10,7 +10,7 @@
                     <p class="card-text">{{ $conference->description }}</p>
                     <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date) }}</p>
                     <p><strong>Location:</strong> {{ $conference->location }}</p>
-                    <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
+                    <p><strong>Price:</strong>Rp{{ number_format($conference->price, 2, ',', '.') }}</p>
 
                     <div class="mt-4">
                         <form action="{{ route('conference.buy', $conference->id) }}" method="POST">
@@ -30,7 +30,7 @@
                     <p><strong>Title:</strong> {{ $conference->title }}</p>
                     <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date)->format('d-m-Y') }}</p>
                     <p><strong>Location:</strong> {{ $conference->location }}</p>
-                    <p><strong>Price:</strong> Rp.{{ $conference->price }}</p>
+                    <p><strong>Price:</strong> Rp{{ number_format($conference->price, 2, ',', '.') }}</p>
                 </div>
             </div>
         </div>

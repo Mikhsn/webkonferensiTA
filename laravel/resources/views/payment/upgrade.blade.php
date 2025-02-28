@@ -64,8 +64,8 @@
     <div class="upgrade-card">
         <h2>Upgrade ke Member</h2>
         <p>Harga Upgrade:</p>
-        <p class="price">Rp{{ number_format($membershipPrice->price, 0, ',', '.') }}</p>
-        <button id="pay-button">Bayar Sekarang</button>
+        <p class="price">Rp{{ number_format($membershipPrice->price, 2, ',', '.') }}</p>
+        <button id="pay-button">Pay Now</button>
     </div>
 
     <script type="text/javascript">
