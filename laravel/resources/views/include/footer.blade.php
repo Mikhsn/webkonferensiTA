@@ -5,8 +5,7 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2"><a href="/home"><img src="/images/logo.png" alt="#"
                                 style="height: 30px;">Sotvi.</a></h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                        there live the blind texts.</p>
+                    <p>Berakhlak Mulia, Berfikir Akademis, Bertindak Profesional.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -41,12 +40,11 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St.
-                                    Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62
-                                        831 6771 4417</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span
-                                        class="text">ihsan.itmipnp@gmail.com</span></a></li>
+                            <li><a href="https://maps.app.goo.gl/njbQ8ZhTcRSkTBc39" target="_blank"><span class="icon icon-map-marker"></span><span class="text">Jl. Kampus, Limau Manis,
+                                    Kec. Pauh, Kota Padang, Sumatera Barat 25164</span></a></li>
+                            <li><a href="tel:(0751)72590"><span class="icon icon-phone"></span><span class="text">(0751)72590</span></a></li>
+                            <li><a href="mailto:info@pnp.ac.id"><span class="icon icon-envelope"></span><span
+                                        class="text">info@pnp.ac.id</span></a></li>
                         </ul>
                     </div>
                 </div>

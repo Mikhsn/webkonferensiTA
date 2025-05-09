@@ -48,7 +48,7 @@
     @endif --}}
     @include('include.navbar')
     @yield('section')
-    <section class="ftco-section-parallax ftco-section ftco-no-pt">
+    {{-- <section class="ftco-section-parallax ftco-section ftco-no-pt">
         <div class="parallax-img d-flex align-items-center">
             <div class="container">
                 <div class="row d-flex justify-content-center">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     @include('include.footer')
 
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">

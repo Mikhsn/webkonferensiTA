@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Member</title>
-     <link rel="icon" href="/images/logo.png" type="icon">
+    <link rel="icon" href="/images/logo.png" type="icon">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -63,8 +63,8 @@
         background-color: #218838;
     }
 
-     /* Global styles */
-     .card {
+    /* Global styles */
+    .card {
         border-radius: 10px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -101,6 +101,7 @@
         opacity: 0.9;
     }
 </style>
+
 <body>
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -121,22 +122,41 @@
                                     </div>
                                     <div class="text">
                                         <h6 class="user-dropdown-name">{{ Auth::user()->name }}</h6>
-                                        <p class="user-dropdown-status text-sm text-muted">{{ Auth::user()->member_id }}</p>
+                                        <p class="user-dropdown-status text-sm text-muted">{{ Auth::user()->member_id }}
+                                        </p>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg">
                                     <li>
                                         <form action="/member/profile" method="" class="dropdown-item">
                                             @csrf
-                                            <button type="submit" class="btn btn-link dropdown-item">My Profile</button>
+                                            <button type="submit" class="btn btn-link dropdown-item">My
+                                                Profile</button>
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="/logout" method="post" class="dropdown-item">
+                                        <a href="/member/edit" class="dropdown-item">
                                             @csrf
-                                            <button type="submit" class="btn btn-link dropdown-item">Logout</button>
+                                            <button type="submit" class="btn btn-link dropdown-item">Edit
+                                                Profile</button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('member.download', auth()->user()->id) }}"
+                                            class="dropdown-item">
+                                            @csrf
+                                            <button type="submit" class="btn btn-link dropdown-item">Member
+                                                Card</button>
+                                        </a>
+                                    </li>
+                                    <li class="d-flex justify-content-center">
+                                        <form action="/logout" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger text-white">Logout</button>
                                         </form>
                                     </li>
+
+
                                 </ul>
 
                             </div>
@@ -188,7 +208,7 @@
                 <div class="container">
                     <div class="footer clearfix mb-0 text-muted">
                         <div class="float-start">
-                            <p>2024 &copy; Sotvi</p>
+                            <p>2025 &copy; Sotvi</p>
                         </div>
                         <div class="float-end">
                             <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a

@@ -54,8 +54,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/home');
     }
-
-
     /**
      * Store a newly created resource in storage.
      *

@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Welcome, {{ Auth::user()->name }} You Are Member Now</h2>
         @if (auth()->user()->role_id === 3)
-        <div class="container mt-4">
+        {{-- <div class="container mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-sm">
@@ -19,11 +19,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         @endif
         <!-- User Profile Section -->
         <div class="row mb-4">
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">Your Profile</h5>
@@ -32,9 +32,9 @@
                         <a href="/member/edit" class="btn btn-primary">Edit Profile</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Recent Conference Purchase -->
-            <div class="col-md-8">
+            {{-- <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Recently Purchased Conference</h5>
@@ -42,11 +42,11 @@
                         <a href="/member/member" class="btn btn-success">Browse Conferences</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <!-- Available Conferences Section -->
-        <h3 class="text-center mb-4">Available Conferences</h3>
+        {{-- <h3 class="text-center mb-4">Available Conferences</h3> --}}
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($conferences as $conference)
                 <div class="col">
