@@ -90,7 +90,7 @@
                         </li>
 
                         <li class="sidebar-item {{ Request::is('users*') ? 'active' : '' }}">
-                            <a href="/admin/users" class='sidebar-link'>
+                            <a href="/users" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Users</span>
                             </a>
@@ -129,8 +129,8 @@
                                 <li class="submenu-item {{ Request::is('reports/member') ? 'active' : '' }}">
                                     <a href="/reports/member">Member</a>
                                 </li>
-                                <li class="submenu-item {{ Request::is('admin/downloads') ? 'active' : '' }}">
-                                    <a href="/admin/downloads">Download Info</a>
+                                <li class="submenu-item {{ Request::is('reports/downloads') ? 'active' : '' }}">
+                                    <a href="/reports/downloads">Download Info</a>
                                 </li>
                             </ul>
                         </li>
@@ -156,7 +156,11 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2024 &copy; Sotvi.</p>
+                        <p>
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script> &copy; Sotvi.
+                        </p>
                     </div>
                     <div class="float-end">
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a

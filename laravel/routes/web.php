@@ -91,9 +91,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::post('/conferences/{conferences}/update', [ConferenceController::class, 'update'])->name('conferences.update');
     Route::delete('/conferences/{conferences}', [ConferenceController::class, 'destroy'])->name('conferences.destroy');
 
-    Route::get('/admin/downloads', [AdminController::class, 'viewDownloads'])->name('admin.downloads');
+    Route::get('/reports/downloads', [AdminController::class, 'viewDownloads'])->name('reports.downloads');
 
-    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/users', [AdminController::class, 'users'])->name('users');
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('users.edit');
     Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('users.update');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('users.destroy');

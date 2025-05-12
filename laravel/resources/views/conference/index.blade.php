@@ -1,15 +1,15 @@
 @extends('master.kerangka')
 @section('content')
-<style>
-    .card {
-        transition: all 0.3s ease;
-    }
+    <style>
+        .card {
+            transition: all 0.3s ease;
+        }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    }
-</style>
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
     <div class="container mb-4">
         <h2 class="text-center mb-4">List Of Conferences</h2>
         <div class="row">
@@ -47,7 +47,9 @@
                             <tbody>
                                 @forelse ($conferences as $index => $conference)
                                     <tr>
-                                        <td class="text-center">{{ $loop->iteration + ($conferences->currentPage() - 1) * $conferences->perPage() }}</td>
+                                        <td class="text-center">
+                                            {{ $loop->iteration + ($conferences->currentPage() - 1) * $conferences->perPage() }}
+                                        </td>
                                         <td class="text-center">
                                             <img src="{{ Storage::url('public/conference/') . $conference->image }}"
                                                 class="img-fluid rounded" style="width: 120px">
@@ -57,12 +59,14 @@
                                         <td>{{ $conference->date }}</td>
                                         <td>{{ $conference->location }}</td>
                                         <td class="text-center">Rp{{ number_format($conference->price, 2, ',', '.') }}</td>
-                                        <td class="text-center">{{ number_format($conference->discount, 0, ',', '.') }}%</td>
+                                        <td class="text-center">{{ number_format($conference->discount, 0, ',', '.') }}%
+                                        </td>
                                         <td class="text-center">
                                             <a href="{{ route('conferences.edit', $conference->id) }}"
                                                 class="btn btn-sm btn-warning">UPDATE</a>
                                             <form onsubmit="return confirm('Apakah Anda Yakin Menghapus Conference ini ?');"
-                                                action="{{ route('conferences.destroy', $conference->id) }}" method="POST">
+                                                action="{{ route('conferences.destroy', $conference->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <br>
