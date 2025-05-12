@@ -28,20 +28,20 @@
 
 
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <a href="/conferences/tambah" class="btn btn-md btn-primary">TAMBAH CONFERENCE</a>
+                            <a href="/conferences/tambah" class="btn btn-md btn-primary">ADD CONFERENCE</a>
                         </div>
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">NO</th>
-                                    <th scope="col" class="text-center">GAMBAR</th>
-                                    <th scope="col" class="text-center">JUDUL</th>
-                                    <th scope="col" class="text-center">DESKRIPSI</th>
-                                    <th scope="col" class="text-center">TANGGAL</th>
-                                    <th scope="col" class="text-center">LOKASI</th>
-                                    <th scope="col" class="text-center">HARGA</th>
-                                    <th scope="col" class="text-center">DISKON MEMBER</th>
-                                    <th scope="col" class="text-center">AKSI</th>
+                                    <th scope="col" class="text-center">IMAGE</th>
+                                    <th scope="col" class="text-center">TITLE</th>
+                                    <th scope="col" class="text-center">DESCRIPTION</th>
+                                    <th scope="col" class="text-center">DATE</th>
+                                    <th scope="col" class="text-center">LOCATION</th>
+                                    <th scope="col" class="text-center">PRICE</th>
+                                    <th scope="col" class="text-center">MEMBER DISCOUNT</th>
+                                    <th scope="col" class="text-center">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,13 +64,13 @@
                                         <td class="text-center">
                                             <a href="{{ route('conferences.edit', $conference->id) }}"
                                                 class="btn btn-sm btn-warning">UPDATE</a>
-                                            <form onsubmit="return confirm('Apakah Anda Yakin Menghapus Conference ini ?');"
+                                            <form onsubmit="return confirm('Are you sure you want to delete this conference ?');"
                                                 action="{{ route('conferences.destroy', $conference->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <br>
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
                                             </form>
 
                                         </td>
@@ -79,7 +79,7 @@
                                     <tr>
                                         <td colspan="7" class="text-center">
                                             <div class="alert alert-danger">
-                                                Data Conference belum Tersedia.
+                                                Conference data is not yet available.
                                             </div>
                                         </td>
                                     </tr>

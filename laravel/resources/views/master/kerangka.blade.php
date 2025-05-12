@@ -99,7 +99,7 @@
                         <li class="sidebar-item {{ Request::is('conferences*') ? 'active' : '' }}">
                             <a href="/conferences" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>Conference</span>
+                                <span>Conferences</span>
                             </a>
                         </li>
 
@@ -124,10 +124,10 @@
                             </a>
                             <ul class="submenu">
                                 <li class="submenu-item {{ Request::is('reports/user') ? 'active' : '' }}">
-                                    <a href="/reports/user">User</a>
+                                    <a href="/reports/user">Users</a>
                                 </li>
                                 <li class="submenu-item {{ Request::is('reports/member') ? 'active' : '' }}">
-                                    <a href="/reports/member">Member</a>
+                                    <a href="/reports/member">Members</a>
                                 </li>
                                 <li class="submenu-item {{ Request::is('reports/downloads') ? 'active' : '' }}">
                                     <a href="/reports/downloads">Download Info</a>

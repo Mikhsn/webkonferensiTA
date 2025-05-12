@@ -11,22 +11,22 @@
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
-    <h2 class="mb-4 text-center">User yang Telah Mengunduh Sertifikat</h2>
+    <h2 class="mb-4 text-center">Users Who Have Downloaded the Certificate</h2>
     <div class="container mt-5 shadow-lg p-4 bg-white rounded">
         <div class="table-responsive">
             @if ($transactions->isEmpty())
                 <div class="alert alert-warning text-center" role="alert">
-                    Belum ada user yang telah mengunduh sertifikat !
+                    No users have downloaded the certificate yet !
                 </div>
             @else
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Nama User</th>
+                            <th class="text-center">User Name</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Conference</th>
-                            <th class="text-center">Sertifikat Diunduh</th>
+                            <th class="text-center">Certificate Downloaded</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,9 +39,9 @@
                                 <td>{{ $transaction->conference->title }}</td>
                                 <td class="text-center">
                                     @if ($transaction->certificate_downloaded)
-                                        <span class="badge badge-success bg-success">Sudah</span>
+                                        <span class="badge badge-success bg-success">Done</span>
                                     @else
-                                        <span class="badge badge-secondary bg-danger">Belum</span>
+                                        <span class="badge badge-secondary bg-danger">Not Yet</span>
                                     @endif
                                 </td>
 

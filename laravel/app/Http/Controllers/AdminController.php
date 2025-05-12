@@ -11,62 +11,62 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index()
-{
-    // Menghitung total jumlah pengguna
-    $totalUsers = User::count();
+    {
+        // Menghitung total jumlah pengguna
+        $totalUsers = User::count();
 
-    // Menghitung total jumlah member
-    $totalMembers = User::where('role_id', 3)->count();
-    $totalRegularUsers = User::where('role_id', 2)->count();
+        // Menghitung total jumlah member
+        $totalMembers = User::where('role_id', 3)->count();
+        $totalRegularUsers = User::where('role_id', 2)->count();
 
-    // Menghitung total konferensi
-    $totalConference = Conference::count();
+        // Menghitung total konferensi
+        $totalConference = Conference::count();
 
-    // Menghitung total transaksi
-    $totalTransactions = Payment::count() + Transaction::count();
+        // Menghitung total transaksi
+        $totalTransactions = Payment::count() + Transaction::count();
 
-    // Mengambil 5 transaksi terbaru
-    $recentUpgrade = Payment::whereNotNull('user_id') // Atau gunakan kolom yang sesuai jika ada
-    ->where('transaction_status', 'pending')
-    ->where('payment_type', 'upgrade_member') // Sesuaikan kolom ini dengan data upgrade
-    ->count();
+        // Mengambil 5 transaksi terbaru
+        $recentUpgrade = Payment::whereNotNull('user_id') // Atau gunakan kolom yang sesuai jika ada
+            ->where('transaction_status', 'pending')
+            ->where('payment_type', 'upgrade_member') // Sesuaikan kolom ini dengan data upgrade
+            ->count();
 
-    $recentConference = Transaction::whereNotNull('conference_id') // Kolom 'conference_id' menandakan pembelian conference
-    ->where('status', 'pending') // Sesuaikan 'transaction_status' dengan kolom status pada tabel Anda
-    ->count();
+        $recentConference = Transaction::whereNotNull('conference_id') // Kolom 'conference_id' menandakan pembelian conference
+            ->where('status', 'pending') // Sesuaikan 'transaction_status' dengan kolom status pada tabel Anda
+            ->count();
 
-    // Mendapatkan total pendapatan upgrade member
-    $memberRevenue = Payment::whereNotNull('user_id')
+        // Mendapatkan total pendapatan upgrade member
+        $memberRevenue = Payment::whereNotNull('user_id')
 
-        ->where('transaction_status', 'approved')
-        ->sum('amount');
+            ->where('transaction_status', 'approved')
+            ->sum('amount');
 
-    // Mendapatkan total pendapatan pembelian konferensi
-    $conferenceRevenue = Transaction::whereNotNull('conference_id')
-    ->where('status', 'approved')
-    ->join('conferences', 'transactions.conference_id', '=', 'conferences.id')
-    ->sum('conferences.price');
+        // Mendapatkan total pendapatan pembelian konferensi
+        $conferenceRevenue = Transaction::whereNotNull('conference_id')
+            ->where('status', 'approved')
+            ->join('conferences', 'transactions.conference_id', '=', 'conferences.id')
+            ->sum('conferences.price');
 
-    // Mengirim semua data ke view
-    return view('admin.index', compact(
-        'totalUsers',
-        'totalMembers',
-        'totalRegularUsers',
-        'totalConference',
-        'totalTransactions',
-        'recentUpgrade',
-        'recentConference',
-        'memberRevenue',
-        'conferenceRevenue'
-    ));
-}
+        // Mengirim semua data ke view
+        return view('admin.index', compact(
+            'totalUsers',
+            'totalMembers',
+            'totalRegularUsers',
+            'totalConference',
+            'totalTransactions',
+            'recentUpgrade',
+            'recentConference',
+            'memberRevenue',
+            'conferenceRevenue'
+        ));
+    }
 
 
     public function transactions()
     {
         $transactions = Transaction::with('user', 'conference')
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('admin.transactions', compact('transactions'));
     }
 
@@ -172,8 +172,8 @@ class AdminController extends Controller
         $search = $request->input('search');
         $users = User::when($search, function ($query, $search) {
             return $query->where('name', 'like', "%{$search}%")
-                         ->orWhere('email', 'like', "%{$search}%");
-        })  ->orderBy('created_at', 'desc')
+                ->orWhere('email', 'like', "%{$search}%");
+        })->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('users.index', compact('users'));
@@ -210,4 +210,3 @@ class AdminController extends Controller
     //     return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
     // }
 }
-

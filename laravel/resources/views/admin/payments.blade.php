@@ -13,14 +13,14 @@
     <h3 class="mb-0 text-center">Payment List</h3>
     <div class="container mt-5">
             @if ($payments->isEmpty())
-                <div class="alert alert-warning text-center">Tidak ada data pengguna.</div>
+                <div class="alert alert-warning text-center">No user data.</div>
             @else
                 <!-- Form Pencarian -->
                 <div class="mb-3">
                     <form action="{{ url()->current() }}" method="GET" class="d-flex">
                         <input type="text" name="search" class="form-control me-2" placeholder="Search User..."
                             value="{{ request('search') }}">
-                        <button type="submit" class="btn btn-primary">Cari</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </div>
             <div class="card shadow-sm">

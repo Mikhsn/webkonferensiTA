@@ -32,7 +32,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             <span class="badge bg-primary">
-                                {{ $user->role_id == 2 ? 'User Biasa' : '' }}
+                                {{ $user->role_id == 2 ? 'User' : '' }}
                             </span>
                         </td>
                     </tr>

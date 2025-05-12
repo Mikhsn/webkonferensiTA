@@ -14,14 +14,14 @@
 <h2 class="mb-4 text-center">List Users</h2>
 
 @if($users->isEmpty())
-<div class="alert alert-warning text-center">Tidak ada data pengguna.</div>
+<div class="alert alert-warning text-center">No user data.</div>
 @else
 <!-- Form Pencarian -->
 <div class="container mt-5 shadow-lg p-4 bg-white rounded">
     <div class="mb-3">
         <form action="{{ url()->current() }}" method="GET" class="d-flex">
             <input type="text" name="search" class="form-control me-2" placeholder="Search User..." value="{{ request('search') }}">
-            <button type="submit" class="btn btn-primary">Cari</button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 
@@ -45,9 +45,9 @@
                             <td>{{ $user->email }}</td>
                             <td class="text-center">
                                 @if($user->role_id == 1)
-                                    <span class="badge bg-primary">Admin</span>
+                                    <span class="badge bg-secondary">Admin</span>
                                 @elseif($user->role_id == 2)
-                                    <span class="badge bg-secondary">User Biasa</span>
+                                    <span class="badge bg-primary">User</span>
                                 @elseif($user->role_id == 3)
                                     <span class="badge bg-success">Member</span>
                                 @endif
