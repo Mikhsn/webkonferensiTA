@@ -81,7 +81,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 
 
     Route::get('/reports/user', [ReportsController::class, 'index']);
+    Route::get('/user/cetak', [ReportsController::class, 'cetak']);
     Route::get('/reports/member', [ReportsMemberController::class, 'member']);
+    Route::get('/member/cetak', [ReportsMemberController::class, 'cetakmember']);
     Route::get('/conferences', [ConferenceController::class, 'index'])->name('conferences.index');
     Route::get('/conferences/tambah', [ConferenceController::class, 'create'])->name('conferences.tambah');
     Route::post('/conferences', [ConferenceController::class, 'store'])->name('conferences.store');
